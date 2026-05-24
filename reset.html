@@ -1,0 +1,6 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lumero Reset</title><style>body{background:#050914;color:white;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;padding:28px}button{background:#15a7ff;color:#02111f;border:0;border-radius:14px;padding:14px 18px;font-weight:800}</style></head>
+<body><h1>Lumero cache reset</h1><p>Use this after uploading a new build to clear older cached versions.</p><button onclick="reset()">Clear cache and open v0.8</button>
+<script>
+async function reset(){if('serviceWorker' in navigator){const regs=await navigator.serviceWorker.getRegistrations();for(const r of regs){await r.unregister();}} if('caches' in window){const keys=await caches.keys();for(const k of keys){await caches.delete(k);}} location.href='index.html?v=0.8';}
+</script></body></html>
