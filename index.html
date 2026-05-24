@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lumero v0.3</title>
+<meta name="theme-color" content="#071426">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/lumero-icon.svg">
+<link rel="apple-touch-icon" href="assets/lumero-icon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <div class="brand">
+      <img class="logo" src="assets/lumero-icon.svg" alt="Lumero">
+      <div><h1>Lumero</h1><p>AI-powered photo & device intelligence</p></div>
+    </div>
+    <div class="hero-actions">
+      <button class="btn runScan">Run Smart Scan</button>
+      <button class="btn secondary" id="checkUpdate">Check Updates</button>
+      <span class="version-pill">v0.3 prototype</span>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <button class="tabbtn active" data-tab="dashboard">Dashboard</button>
+    <button class="tabbtn" data-tab="photos">Photos</button>
+    <button class="tabbtn" data-tab="reports">Reports</button>
+    <button class="tabbtn" data-tab="tools">Tools</button>
+    <button class="tabbtn" data-tab="more">More</button>
+  </nav>
+
+  <main>
+    <section id="dashboard" class="section active">
+      <div class="dashboard-grid">
+        <div class="card full">
+          <div class="ring-wrap">
+            <div class="ring" style="--score:87"><span>87</span></div>
+            <div class="score-detail">
+              <div class="kicker">Overall health score</div>
+              <h2>Good condition</h2>
+              <p>Photo review and screenshot cleanup would improve storage efficiency.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card mini"><div class="kicker">Storage</div><div class="big">72%</div><div class="muted">91.4 GB / 128 GB</div><div class="progress"><i style="width:72%"></i></div></div>
+        <div class="card mini"><div class="kicker">Battery</div><div class="big">88%</div><div class="muted">Good health</div><div class="progress green"><i style="width:88%"></i></div></div>
+        <div class="card mini"><div class="kicker">Photos</div><div class="big">23.6</div><div class="muted">GB · review suggested</div><div class="progress amber"><i style="width:64%"></i></div></div>
+        <div class="card mini"><div class="kicker">Clutter</div><div class="big">64</div><div class="muted">Moderate</div><div class="progress amber"><i style="width:64%"></i></div></div>
+        <div class="card full">
+          <div class="kicker">Smart recommendations</div>
+          <div class="insight-list">
+            <div class="insight"><span class="badge">1</span><div><strong>Review screenshots</strong><br><span class="muted">Estimated 2.45 GB can be recovered.</span></div></div>
+            <div class="insight"><span class="badge">2</span><div><strong>Analyse similar photos</strong><br><span class="muted">Lumero can recommend the clearest image in each group.</span></div></div>
+            <div class="insight"><span class="badge">3</span><div><strong>Large video review</strong><br><span class="muted">10.8 GB identified for compression or archive.</span></div></div>
+          </div>
+        </div>
+        <div class="card full">
+          <div class="kicker">Storage timeline</div>
+          <div class="chart"><div class="bar" style="height:45%" data-label="Jan"></div><div class="bar" style="height:56%" data-label="Feb"></div><div class="bar" style="height:67%" data-label="Mar"></div><div class="bar" style="height:76%" data-label="Apr"></div><div class="bar" style="height:90%" data-label="May"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos" class="section">
+      <div class="card full upload-zone">
+        <div class="kicker">Local photo test</div>
+        <h2>Upload a few test photos</h2>
+        <p class="muted">v0.3 can simulate local best-shot scoring in the browser. Images are not uploaded anywhere.</p>
+        <input id="photoInput" type="file" accept="image/*" multiple>
+      </div>
+      <div id="photoResults" class="photos-grid" style="margin-top:12px">
+        <div class="photo-card"><div class="photo-swatch">🏆</div><div><strong>Best Shot</strong><br><span class="muted">Compare sharpness and quality.</span></div></div>
+        <div class="photo-card"><div class="photo-swatch">🖼️</div><div><strong>Similar Photos</strong><br><span class="muted">Group likely duplicates.</span></div></div>
+        <div class="photo-card"><div class="photo-swatch">⚠️</div><div><strong>Blurry</strong><br><span class="muted">Flag images to review.</span></div></div>
+        <div class="photo-card"><div class="photo-swatch">📱</div><div><strong>Screenshots</strong><br><span class="muted">Quick cleanup category.</span></div></div>
+      </div>
+    </section>
+
+    <section id="reports" class="section">
+      <div class="card full">
+        <div class="kicker">Reports</div>
+        <div class="report-row"><div><strong>Device Health Report</strong><br><span class="muted">Storage, battery and ageing overview</span></div><div class="circle-small">87</div></div>
+        <div class="report-row"><div><strong>Photo Intelligence Report</strong><br><span class="muted">Best shots, blurry images and duplicates</span></div><div class="circle-small">78</div></div>
+        <div class="report-row"><div><strong>Digital Clutter Report</strong><br><span class="muted">Screenshots, large files and app clutter</span></div><div class="circle-small">64</div></div>
+        <button class="btn" onclick="toast('Report export simulation complete.')">Generate Report</button>
+      </div>
+    </section>
+
+    <section id="tools" class="section">
+      <div class="tools-grid">
+        <div class="card tool"><div class="kicker">Emergency</div><div class="big">15.6</div><div class="muted">GB potential recovery</div><button class="btn runScan" style="margin-top:14px">Scan</button></div>
+        <div class="card tool"><div class="kicker">Large videos</div><div class="big">10.8</div><div class="muted">GB to review</div></div>
+        <div class="card tool"><div class="kicker">Screenshots</div><div class="big">2.45</div><div class="muted">GB estimated</div></div>
+        <div class="card tool"><div class="kicker">Duplicates</div><div class="big">3.12</div><div class="muted">GB found</div></div>
+      </div>
+    </section>
+
+    <section id="more" class="section">
+      <div class="card full">
+        <div class="kicker">System</div>
+        <div class="report-row"><div><strong>Version</strong><br><span class="muted">Lumero v0.3 prototype</span></div><span class="version-pill">0.3.0</span></div>
+        <div class="report-row"><div><strong>Scans completed</strong><br><span class="muted">Stored locally on this device</span></div><strong id="scanCount">0</strong></div>
+        <div class="report-row"><div><strong>Last scan</strong><br><span class="muted" id="lastScan">Not scanned yet</span></div></div>
+        <div class="update-box" id="updateStatus"><strong>Update checker ready</strong><br><span class="muted">Tap Check Updates above.</span></div>
+      </div>
+      <div class="card full" style="margin-top:12px">
+        <div class="kicker">Privacy first</div>
+        <p>All prototype analysis happens locally in the browser. A native iOS version would use Apple Photos and Vision frameworks for on-device analysis.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="bottom-nav"><div class="bottom-nav-inner">
+  <button data-tab="dashboard" class="active">⌂<br>Home</button><button data-tab="photos">▧<br>Photos</button><button data-tab="reports">▤<br>Reports</button><button data-tab="tools">⚡<br>Tools</button><button data-tab="more">•••<br>More</button>
+</div></div>
+
+<div id="scanOverlay" class="scan-overlay"><div class="scan-modal"><div class="scan-orb"></div><h2>Smart Scan Running</h2><p class="muted" id="scanText">Checking photo patterns…</p></div></div>
+<div id="toast" class="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
