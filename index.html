@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lumero v0.6</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/lumero-icon.svg">
+<link rel="apple-touch-icon" href="assets/lumero-icon.svg">
+<meta name="theme-color" content="#07162d">
+<style>
+:root{--bg:#050914;--panel:#0b1222;--panel2:#101b31;--line:#1b3157;--blue:#15a7ff;--cyan:#70f7ff;--text:#f4fbff;--muted:#9fb5ce;--green:#37e6a5;--amber:#ffd166;--red:#ff6b6b}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top,#102447 0,#050914 42%,#03060d 100%);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);min-height:100vh}
+#splash{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:#050914;transition:opacity 1.1s ease,visibility 1.1s ease}
+#splash.hide{opacity:0;visibility:hidden}.splashbox{text-align:center;animation:rise .9s ease}.splashbox img{width:112px;filter:drop-shadow(0 0 28px #15a7ff)}.splashbox h1{font-size:42px;margin:18px 0 6px}.splashbox p{color:var(--muted);margin:0}@keyframes rise{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+.app{max-width:430px;margin:0 auto;min-height:100vh;padding:18px 16px 92px}.top{display:flex;align-items:center;justify-content:space-between;margin:10px 0 18px}.brand{display:flex;align-items:center;gap:10px}.brand img{width:42px}.brand h1{font-size:24px;margin:0}.brand small{color:var(--muted)}.pill{border:1px solid var(--line);background:rgba(21,167,255,.12);padding:8px 11px;border-radius:999px;font-size:12px;color:#dff8ff}
+.card{background:linear-gradient(180deg,rgba(16,27,49,.94),rgba(8,14,27,.94));border:1px solid var(--line);border-radius:24px;padding:16px;margin:12px 0;box-shadow:0 14px 36px rgba(0,0,0,.28)}.hero{padding:20px}.hero h2{font-size:27px;margin:0 0 6px}.muted{color:var(--muted)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{min-height:122px}.metric b{display:block;font-size:28px;margin:8px 0 4px}.label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.bar{height:8px;background:#182641;border-radius:999px;overflow:hidden;margin-top:12px}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:999px}.btn{width:100%;border:0;border-radius:17px;padding:14px 16px;background:linear-gradient(135deg,var(--blue),#53dfff);color:#02111f;font-weight:800;font-size:15px}.btn.secondary{background:#121f37;color:#eefaff;border:1px solid var(--line)}.nav{position:fixed;bottom:0;left:0;right:0;background:rgba(5,9,20,.86);backdrop-filter:blur(18px);border-top:1px solid var(--line);display:flex;justify-content:center}.nav-inner{max-width:430px;width:100%;display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:8px 8px max(8px,env(safe-area-inset-bottom))}.nav button{background:transparent;color:var(--muted);border:0;border-radius:14px;padding:8px 2px;font-size:11px}.nav button.active{color:#fff;background:#101c32}.nav .ico{display:block;font-size:19px;margin-bottom:2px}.screen{display:none}.screen.active{display:block}.row{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid rgba(255,255,255,.07);padding:12px 0}.row:first-child{border-top:0}.tag{font-size:12px;padding:5px 9px;border-radius:999px;border:1px solid var(--line);color:#cbefff}.risk-low{color:var(--green)}.risk-med{color:var(--amber)}.risk-high{color:var(--red)}details{margin-top:10px}summary{cursor:pointer;color:#dff8ff;font-weight:700}.photo-upload{border:1px dashed #2b568a;border-radius:22px;padding:16px;text-align:center;background:rgba(21,167,255,.06)}input[type=file]{width:100%;margin:12px 0;color:#cdefff}.thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.thumb{background:#0c1425;border:1px solid var(--line);border-radius:14px;padding:8px;font-size:11px;overflow:hidden}.thumb img{width:100%;height:70px;object-fit:cover;border-radius:10px}.notice{font-size:13px;line-height:1.45;color:#c6d7e8}.scanline{height:3px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);border-radius:10px;animation:scan 1.6s infinite}@keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}.divider{height:1px;background:rgba(255,255,255,.08);margin:14px 0}.small{font-size:12px}.kpi{font-size:36px;font-weight:900;letter-spacing:-.04em}.title{font-size:20px;margin:0 0 8px}.subtle{font-size:13px;color:var(--muted);line-height:1.45}
+</style>
+</head>
+<body>
+<div id="splash"><div class="splashbox"><img src="assets/lumero-icon.svg" alt=""><h1>Lumero</h1><p>Understand. Optimise. Preserve.</p></div></div>
+<main class="app">
+<header class="top"><div class="brand"><img src="assets/lumero-icon.svg" alt=""><div><h1>Lumero</h1><small>v0.6 Battery + File Intelligence</small></div></div><span class="pill" id="updatePill">Up to date</span></header>
+
+<section id="dashboard" class="screen active">
+<div class="card hero"><div class="label">Device overview</div><h2>Your iPhone intelligence dashboard</h2><p class="muted">A prototype view combining storage, photo, file compatibility and battery guidance.</p><button class="btn" onclick="runScan()">Run smart scan</button><div id="scanAnim" style="display:none;margin-top:14px;overflow:hidden"><div class="scanline"></div><p class="small muted">Analysing selected files and dashboard signals…</p></div></div>
+<div class="grid2">
+<div class="card metric"><span class="label">Storage</span><b id="storageUsed">—</b><span class="muted">Use “estimate storage” below</span><div class="bar"><span style="width:62%"></span></div></div>
+<div class="card metric"><span class="label">Battery</span><b>88%</b><span class="muted">Good capacity estimate</span><div class="bar"><span style="width:88%"></span></div></div>
+<div class="card metric"><span class="label">Clutter Score</span><b>64/100</b><span class="muted">Moderate digital clutter</span><details><summary>What does this mean?</summary><p class="notice">The clutter score estimates how much recoverable or review-worthy content may exist, including screenshots, duplicates, large videos, RAW files, compatibility-risk formats and unused downloads. A lower score is better.</p></details></div>
+<div class="card metric"><span class="label">Compatibility</span><b id="riskScore">Low</b><span class="muted">HEIC / RAW / DNG awareness</span><div class="bar"><span id="riskBar" style="width:28%"></span></div></div>
+</div>
+<div class="card"><h3 class="title">Storage estimate</h3><p class="subtle">Web apps cannot fully read total iPhone capacity automatically. In the native iOS version, Lumero would use Apple system APIs to display total capacity, available storage and Photos storage.</p><div class="grid2"><button class="btn secondary" onclick="estimateStorage()">Estimate from selected files</button><button class="btn secondary" onclick="showNativeNote()">Native iOS capability</button></div><p id="storageNote" class="notice"></p></div>
+</section>
+
+<section id="photos" class="screen">
+<div class="card"><h2 class="title">Photo Intelligence</h2><p class="subtle">Upload sample files to test Lumero’s web prototype. The native app would scan the Photos library directly with permission.</p><div class="photo-upload"><b>Select sample photos/videos/files</b><input id="fileInput" type="file" multiple accept="image/*,video/*,.dng,.heic,.heif,.raw,.cr2,.nef,.arw,.orf,.rw2,.raf" onchange="analyseFiles(this.files)"><span class="small muted">Supports HEIC/HEIF, JPEG, PNG, DNG/RAW, MOV/MP4 where browser allows.</span></div><div id="thumbs" class="thumbs"></div></div>
+<div class="card"><h3 class="title">Professional photo checks</h3><div class="row"><div><b>Best image candidate</b><p class="subtle">Ranks selected images by visible sharpness and file quality signals.</p></div><span class="tag">Quality</span></div><div class="row"><div><b>Similar image review</b><p class="subtle">Groups visually related images for careful review before deletion.</p></div><span class="tag">Review</span></div><div class="row"><div><b>Soft / blurred image detection</b><p class="subtle">Flags likely camera shake, missed focus or low-detail captures.</p></div><span class="tag">Focus</span></div></div>
+</section>
+
+<section id="files" class="screen">
+<div class="card"><h2 class="title">File Type Intelligence</h2><p class="subtle">Detects file types that affect storage, sharing and compatibility.</p><div id="fileBreakdown"></div></div>
+<div class="card"><h3 class="title">HEIC / HEIF compatibility</h3><p class="notice">HEIC is efficient and modern, but some Windows PCs, older software and mixed workflows may require HEIF/HEVC extensions or JPEG conversion.</p><div class="row"><div><b>Windows compatibility mode</b><p class="subtle">For maximum compatibility, iPhone users can use Settings › Camera › Formats › Most Compatible.</p></div><span class="tag risk-med">Guidance</span></div></div>
+<div class="card"><h3 class="title">RAW / DNG intelligence</h3><p class="notice">DNG, Apple ProRAW and camera RAW files can use significant storage. Lumero can identify RAW-heavy areas and suggest archiving rather than deleting.</p></div>
+</section>
+
+<section id="battery" class="screen">
+<div class="card"><h2 class="title">Battery Intelligence</h2><div class="kpi">88%</div><p class="subtle">Battery health guidance panel. Exact cycle count is generally not exposed to normal web apps or standard third-party iOS apps.</p></div>
+<div class="card"><h3 class="title">Recommended actions</h3><div class="row"><div><b>Enable Optimised Battery Charging</b><p class="subtle">Your iPhone can learn your daily charging routine and delay charging past 80% until you need it. This helps reduce time spent at 100%, which can slow battery ageing.</p><p class="small muted">Go to: Settings › Battery › Charging.</p></div><span class="tag risk-low">Important</span></div><div class="row"><div><b>Avoid unnecessary heat</b><p class="subtle">Heat is one of the main factors that accelerates battery ageing. Remove thick cases if the phone gets warm while charging.</p></div><span class="tag">Tip</span></div><div class="row"><div><b>Battery cycle count</b><p class="subtle">Lumero can explain this limitation. A future native version may show model-dependent battery information where Apple allows it.</p></div><span class="tag risk-med">Limited</span></div></div>
+</section>
+
+<section id="reports" class="screen">
+<div class="card"><h2 class="title">Reports</h2><p class="subtle">Generate a simple prototype report based on selected files and current dashboard data.</p><button class="btn" onclick="makeReport()">Generate report</button><div id="reportBox" class="notice" style="margin-top:14px"></div></div>
+</section>
+</main>
+
+<nav class="nav"><div class="nav-inner">
+<button class="active" onclick="go('dashboard',this)"><span class="ico">⌂</span>Home</button>
+<button onclick="go('photos',this)"><span class="ico">◉</span>Photos</button>
+<button onclick="go('files',this)"><span class="ico">▦</span>Files</button>
+<button onclick="go('battery',this)"><span class="ico">⚡</span>Battery</button>
+<button onclick="go('reports',this)"><span class="ico">▣</span>Reports</button>
+</div></nav>
+
+<script>
+let selectedStats={count:0,total:0,types:{}};
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('splash').classList.add('hide'),1200); if('serviceWorker' in navigator){navigator.serviceWorker.register('./service-worker.js').catch(()=>{});} checkVersion();});
+function go(id,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+function runScan(){let a=document.getElementById('scanAnim');a.style.display='block';setTimeout(()=>a.style.display='none',1800);}
+async function checkVersion(){try{const r=await fetch('version.json?x='+Date.now());const v=await r.json();document.getElementById('updatePill').textContent='v '+v.version;}catch(e){}}
+function ext(name){return (name.split('.').pop()||'').toLowerCase();}
+function typeLabel(file){let e=ext(file.name), t=file.type||''; if(['heic','heif'].includes(e))return 'HEIC/HEIF'; if(['dng','raw','cr2','nef','arw','orf','rw2','raf'].includes(e))return 'RAW/DNG'; if(t.startsWith('video/')||['mov','mp4','m4v'].includes(e))return 'Video'; if(['jpg','jpeg'].includes(e))return 'JPEG'; if(['png'].includes(e))return 'PNG'; if(t.startsWith('image/'))return 'Image'; return 'Other';}
+function fmt(bytes){if(!bytes)return '0 MB'; const gb=bytes/1024/1024/1024; if(gb>=1)return gb.toFixed(2)+' GB'; return (bytes/1024/1024).toFixed(1)+' MB';}
+function analyseFiles(files){selectedStats={count:files.length,total:0,types:{}}; const thumbs=document.getElementById('thumbs'); thumbs.innerHTML=''; [...files].forEach((f,i)=>{let label=typeLabel(f); selectedStats.total+=f.size||0; selectedStats.types[label]=(selectedStats.types[label]||0)+(f.size||0); const d=document.createElement('div'); d.className='thumb'; if(f.type.startsWith('image/') && !['HEIC/HEIF','RAW/DNG'].includes(label)){const img=document.createElement('img'); img.src=URL.createObjectURL(f); d.appendChild(img);} d.innerHTML += `<b>${label}</b><br><span class="muted">${fmt(f.size)}</span>`; thumbs.appendChild(d);}); updateBreakdown(); estimateStorage();}
+function updateBreakdown(){const box=document.getElementById('fileBreakdown'); const entries=Object.entries(selectedStats.types); if(!entries.length){box.innerHTML='<p class="notice">No files selected yet. Use the Photos tab to test file type detection.</p>'; return;} box.innerHTML=entries.map(([k,b])=>{let risk=k==='HEIC/HEIF'||k==='RAW/DNG'?'risk-med':'risk-low'; return `<div class="row"><div><b>${k}</b><p class="subtle">${fmt(b)} detected in selected sample.</p></div><span class="tag ${risk}">${k==='RAW/DNG'?'Storage heavy':k==='HEIC/HEIF'?'Compatibility':'OK'}</span></div>`}).join(''); const risky=entries.some(([k])=>k==='HEIC/HEIF'||k==='RAW/DNG'); document.getElementById('riskScore').textContent=risky?'Moderate':'Low'; document.getElementById('riskBar').style.width=risky?'58%':'28%';}
+function estimateStorage(){document.getElementById('storageUsed').textContent=selectedStats.total?fmt(selectedStats.total):'Sample';document.getElementById('storageNote').textContent=selectedStats.total?`Selected sample files use ${fmt(selectedStats.total)}. Native Lumero would compare this against the full iPhone capacity and Photos library usage.`:'Select files in the Photos tab to estimate sample storage usage.';}
+function showNativeNote(){document.getElementById('storageNote').textContent='In the native iOS build, Lumero can read available device storage and estimate Photos library storage after the user grants Photos access.';}
+function makeReport(){const types=Object.keys(selectedStats.types).length?Object.entries(selectedStats.types).map(([k,b])=>`${k}: ${fmt(b)}`).join('<br>'):'No sample files selected.'; document.getElementById('reportBox').innerHTML=`<b>Lumero v0.6 Prototype Report</b><br><br>Battery guidance: Optimised Battery Charging recommended.<br>Clutter score: 64/100, moderate review required.<br>Selected file storage: ${fmt(selectedStats.total)}<br><br>${types}`;}
+</script>
+</body>
+</html>
