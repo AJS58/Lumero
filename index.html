@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lumero v0.2 Interactive Prototype</title>
+  <link rel="icon" href="assets/lumero-icon.svg" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="splash" class="splash">
+    <img src="assets/lumero-icon.svg" alt="Lumero icon" class="splash-icon" />
+    <h1>Lumero</h1>
+    <p>Understand. Optimise. Preserve.</p>
+  </div>
+
+  <main class="app-shell">
+    <section class="hero-card">
+      <div class="brand-row">
+        <img src="assets/lumero-icon.svg" alt="Lumero" class="logo" />
+        <div>
+          <h1>Lumero</h1>
+          <p>AI-powered photo & device intelligence</p>
+        </div>
+      </div>
+      <button id="scanBtn" class="primary-btn">Run Smart Scan</button>
+    </section>
+
+    <nav class="tabs" aria-label="Main navigation">
+      <button class="tab active" data-screen="dashboard">Dashboard</button>
+      <button class="tab" data-screen="photos">Photos</button>
+      <button class="tab" data-screen="reports">Reports</button>
+      <button class="tab" data-screen="tools">Tools</button>
+      <button class="tab" data-screen="more">More</button>
+    </nav>
+
+    <section id="dashboard" class="screen active-screen">
+      <div class="score-card">
+        <div class="ring" id="healthRing"><span id="healthScore">85</span><small>/100</small></div>
+        <div>
+          <h2>Overall Health Score</h2>
+          <p id="healthText">Your iPhone looks well organised. Run a scan to update this.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <article class="metric"><span>Storage</span><strong id="storageMetric">72%</strong><p>Used estimate</p></article>
+        <article class="metric"><span>Battery</span><strong>88%</strong><p>Good health</p></article>
+        <article class="metric"><span>Photos analysed</span><strong id="photoCount">0</strong><p>Local browser analysis</p></article>
+        <article class="metric"><span>Clutter score</span><strong id="clutterScore">64</strong><p>Moderate</p></article>
+      </div>
+      <div class="scan-panel">
+        <h3>Smart Scan Progress</h3>
+        <div class="progress"><div id="progressBar"></div></div>
+        <p id="scanStatus">Ready to scan.</p>
+      </div>
+    </section>
+
+    <section id="photos" class="screen">
+      <div class="panel">
+        <h2>Photo Intelligence</h2>
+        <p>Upload a small batch of images to test Lumero’s local blur/sharpness scoring prototype. Nothing is uploaded anywhere.</p>
+        <input id="photoInput" type="file" accept="image/*" multiple />
+      </div>
+      <div id="photoResults" class="photo-grid"></div>
+    </section>
+
+    <section id="reports" class="screen">
+      <div class="panel">
+        <h2>Reports</h2>
+        <p>v0.2 creates a simple report summary from the current browser session.</p>
+        <button id="reportBtn" class="primary-btn">Generate Report</button>
+      </div>
+      <pre id="reportOutput" class="report-box">No report generated yet.</pre>
+    </section>
+
+    <section id="tools" class="screen">
+      <div class="grid two">
+        <article class="tool-card"><h3>Emergency Space Recovery</h3><p>Simulates a quick clean recommendation.</p><button id="cleanBtn">Preview Recovery</button><strong id="recoveryAmount">—</strong></article>
+        <article class="tool-card"><h3>Screenshot Finder</h3><p>Placeholder for real Photos framework screenshot detection in the iOS build.</p><button disabled>Coming v0.3</button></article>
+        <article class="tool-card"><h3>Large Video Finder</h3><p>Placeholder for identifying large local video assets.</p><button disabled>Coming v0.3</button></article>
+        <article class="tool-card"><h3>Best Shot Intelligence</h3><p>Uses the sharpness score to suggest the strongest uploaded image.</p><button id="bestShotBtn">Find Best Shot</button></article>
+      </div>
+      <div id="bestShotResult" class="panel"></div>
+    </section>
+
+    <section id="more" class="screen">
+      <div class="panel">
+        <h2>Privacy First</h2>
+        <p>All v0.2 image analysis happens locally in your browser. The native iOS version should follow the same principle using Apple Photos, Vision and CoreML.</p>
+      </div>
+      <div class="panel">
+        <h2>v0.2 Scope</h2>
+        <ul>
+          <li>Interactive tabs</li>
+          <li>Smart scan animation</li>
+          <li>Local image upload preview</li>
+          <li>Basic sharpness/blur score</li>
+          <li>Session report output</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <canvas id="analysisCanvas" hidden></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
